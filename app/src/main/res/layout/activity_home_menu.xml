@@ -5,73 +5,237 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/home_conference_bg">
-
-
-    <TableLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_centerHorizontal="true"
-        android:stretchColumns="1"
-        android:gravity="center">
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/ivLogo"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@mipmap/app_icon"
+                android:layout_marginTop="20dp"/>
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:padding="5dp">
-
-            <TableRow
-                android:layout_height="match_parent"
-                android:padding="5dp"
-                android:gravity="center"
-                android:layout_column="1">
-                <android.support.v7.widget.CardView
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/card_view1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    card_view:cardCornerRadius="4dp"
-                    android:background="@color/cardview_shadow_start_color">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Under Develpoment"
-                        android:textSize="15dp"
-                        android:gravity="center"
-                        android:textColor="@color/colorPrimary"/>
-                </android.support.v7.widget.CardView>
-
-            </TableRow>
-
-            <TableRow
-            android:layout_height="match_parent"
-            android:padding="5dp"
-            android:gravity="center"
-            android:layout_column="2">
-
-            <android.support.v7.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/card_view2"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/lvRow1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                card_view:cardCornerRadius="4dp"
-                android:background="@color/cardview_shadow_start_color">
+                android:layout_below="@+id/ivLogo"
+                android:layout_marginTop="10dp">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Under Develpoment"
-                    android:textSize="15dp"
-                    android:gravity="center"
-                    android:textColor="@color/colorPrimary"
-                    android:id="@+id/textView13" />
-            </android.support.v7.widget.CardView>
-            </TableRow>
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:elevation="5dp"
+                    android:gravity="center">
 
-        </TableRow>
+                    <RelativeLayout
+                        android:id="@+id/rlShopForPlans"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="2dp"
+                        android:background="@color/cardview_light_background">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginTop="2dp"
+                            android:background="@color/colorPrimary"
+                            android:gravity="center"
+                            android:paddingLeft="2dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Show Books"
+                                android:textColor="#ffffff"
+                                android:textSize="15dp"
+                                android:id="@+id/textView13" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginBottom="25dp"
+                            android:layout_marginTop="50dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/book_one" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:elevation="5dp"
+                    android:gravity="center">
+
+                    <RelativeLayout
+                        android:id="@+id/rlEnroll"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="2dp"
+                        android:background="@color/cardview_light_background">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginTop="2dp"
+                            android:background="@color/colorPrimary"
+                            android:gravity="center"
+                            android:paddingLeft="2dp">
+
+                            <TextView
+                                android:id="@+id/tv_enroll"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Issue Book"
+                                android:textColor="#ffffff"
+                                android:textSize="15dp" />
+                        </LinearLayout>
 
 
-    </TableLayout>
+                        <ImageView
+                            android:id="@+id/iv_enroll"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginBottom="25dp"
+                            android:layout_marginTop="10dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/profile" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lvRow1"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:elevation="5dp"
+                    android:gravity="center">
+
+                    <RelativeLayout
+                        android:id="@+id/rlShopForPlans"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="2dp"
+                        android:background="@color/cardview_light_background">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginTop="2dp"
+                            android:background="@color/colorPrimary"
+                            android:gravity="center"
+                            android:paddingLeft="2dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Add User"
+                                android:textColor="#ffffff"
+                                android:textSize="15dp"
+                                android:id="@+id/textView1" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginBottom="25dp"
+                            android:layout_marginTop="50dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/user_plus" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:elevation="5dp"
+                    android:gravity="center">
+
+                    <RelativeLayout
+                        android:id="@+id/rlContactUs"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="2dp"
+                        android:background="@color/cardview_light_background">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginTop="2dp"
+                            android:background="@color/colorPrimary"
+                            android:gravity="center"
+                            android:paddingLeft="2dp">
+
+                            <TextView
+                                android:id="@+id/tvContactUs"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Contact Us"
+                                android:textColor="#ffffff"
+                                android:textSize="15dp" />
+                        </LinearLayout>
 
 
+                        <ImageView
+                            android:id="@+id/ivContactUs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginBottom="25dp"
+                            android:layout_marginTop="10dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/phone" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
