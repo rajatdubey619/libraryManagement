@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_home_menu"
+    android:id="@+id/activity_users"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/home_conference_bg">
+
+    tools:context="com.example.nipc26.librarymanagement.activities.UsersActivity">
     <include
         android:id="@+id/toolbarHeader"
         layout="@layout/toolbar_layout" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbarHeader">
+        android:layout_below="@id/toolbarHeader"
+        android:background="@drawable/home_conference_bg">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -19,7 +21,7 @@
                 android:id="@+id/ivLogo"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@mipmap/app_icon"
+                android:src="@drawable/multy_user"
                 android:layout_marginTop="20dp"/>
 
             <LinearLayout
@@ -41,7 +43,7 @@
                     android:gravity="center">
 
                     <RelativeLayout
-                        android:id="@+id/rlShowBooks"
+                        android:id="@+id/rlAddUsers"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="2dp"
@@ -60,7 +62,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Show Books"
+                                android:text="Add User"
                                 android:textColor="#ffffff"
                                 android:textSize="15dp"
                                 android:id="@+id/textView13" />
@@ -75,7 +77,7 @@
                             android:layout_marginTop="50dp"
                             android:adjustViewBounds="true"
                             android:scaleType="centerInside"
-                            android:src="@drawable/book_one" />
+                            android:src="@drawable/user_plus" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -91,7 +93,7 @@
                     android:gravity="center">
 
                     <RelativeLayout
-                        android:id="@+id/rlIssueBook"
+                        android:id="@+id/rlRemoveUser"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="2dp"
@@ -111,7 +113,7 @@
                                 android:id="@+id/tv_enroll"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Issue Book"
+                                android:text="Remove User"
                                 android:textColor="#ffffff"
                                 android:textSize="15dp" />
                         </LinearLayout>
@@ -127,7 +129,7 @@
                             android:layout_marginTop="10dp"
                             android:adjustViewBounds="true"
                             android:scaleType="centerInside"
-                            android:src="@drawable/profile" />
+                            android:src="@drawable/user_minus" />
                     </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -149,7 +151,7 @@
                     android:gravity="center">
 
                     <RelativeLayout
-                        android:id="@+id/rlUsers"
+                        android:id="@+id/rlAllUser"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="2dp"
@@ -168,7 +170,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="User"
+                                android:text="All User"
                                 android:textColor="#ffffff"
                                 android:textSize="15dp"
                                 android:id="@+id/textView1" />
@@ -199,7 +201,7 @@
                     android:gravity="center">
 
                     <RelativeLayout
-                        android:id="@+id/rlContactUs"
+                        android:id="@+id/rlApproveUser"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="2dp"
@@ -216,10 +218,10 @@
                             android:paddingLeft="2dp">
 
                             <TextView
-                                android:id="@+id/tvContactUs"
+                                android:id="@+id/tvApproveUser"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Contact Us"
+                                android:text="Approve User"
                                 android:textColor="#ffffff"
                                 android:textSize="15dp" />
                         </LinearLayout>
@@ -235,11 +237,12 @@
                             android:layout_marginTop="10dp"
                             android:adjustViewBounds="true"
                             android:scaleType="centerInside"
-                            android:src="@drawable/phone" />
+                            android:src="@drawable/user_check" />
                     </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
 
         </RelativeLayout>
     </ScrollView>
+
 </RelativeLayout>

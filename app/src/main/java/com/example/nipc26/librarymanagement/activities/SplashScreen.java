@@ -1,4 +1,4 @@
-package com.example.nipc26.librarymanagement;
+package com.example.nipc26.librarymanagement.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,11 +7,14 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.example.nipc26.librarymanagement.R;
+
 public class SplashScreen extends AppCompatActivity implements Animation.AnimationListener {
 
     private static final String TAG = "SplashScreen";
     private ImageView ivSplash;
     private Animation animation;
+    private Thread thread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +23,9 @@ public class SplashScreen extends AppCompatActivity implements Animation.Animati
 
         ivSplash = (ImageView) findViewById(R.id.ivSplash);
         animation = AnimationUtils.loadAnimation(getBaseContext(), R.anim.rotation);
-        animation.setDuration(3000);
+        animation.setDuration(2000);
         ivSplash.setAnimation(animation);
-        Thread thread = new Thread() {
+        thread = new Thread() {
             @Override
             public void run() {
                 super.run();
@@ -52,6 +55,13 @@ public class SplashScreen extends AppCompatActivity implements Animation.Animati
 
     @Override
     public void onAnimationRepeat(Animation animation) {
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+//        thread.stop();
 
     }
 }

@@ -1,11 +1,113 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+    <!-- Bluetooth printer SDK style -->
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">?android:attr/listDivider</item>
+    </style>
+    <!-- end of Bluetooth printer SDK style -->
+    <style name="ToolbarTheme" parent="AppTheme">
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="actionMenuTextColor">#FFFFFF</item>
+        <item name="android:textSize">@dimen/font_24sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:capitalize">none</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark" />
+
+    <style name="EditTextDefault">
+        <item name="android:textColor">@color/et_color</item>
+        <item name="android:textColorHint">@color/et_hint_color</item>
+    </style>
+
+    <style name="ButtonDefault">
+        <item name="android:textColor">@color/btn_color</item>
+    </style>
+
+    <style name="TextViewDefault">
+        <item name="android:textColor">@color/tv_color</item>
+    </style>
+    <style name="AppFullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="EditTextLogin" parent="EditTextDefault">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">@dimen/et_drawable_padding</item>
+        <item name="android:ems">10</item>
+        <item name="android:padding">@dimen/et_padding</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/et_text_size</item>
+    </style>
+
+    <style name="ButtonLogin" parent="ButtonDefault">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:paddingLeft">@dimen/btn_64dp_padding</item>
+        <item name="android:paddingRight">@dimen/btn_64dp_padding</item>
+        <item name="android:paddingTop">@dimen/btn_16dp_padding</item>
+        <item name="android:paddingBottom">@dimen/btn_16dp_padding</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/btn_32sp_text_size</item>
+    </style>
+
+
+
+    <!--Transparent theme for Usb Activity-->
+    <style name="Theme.Transparent" parent="android:Theme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+    <style name="bagDetailsLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:textSize">@dimen/card_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="bagDetailsValues">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">right</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:textSize">@dimen/card_text_size</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="bagDetailsLinLayContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:padding">8dp</item>
     </style>
 
 </resources>
