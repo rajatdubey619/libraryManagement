@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by NI PC 26 on 10/20/2016.
@@ -25,7 +26,7 @@ import java.util.Date;
 public class RecordDBManager extends SQLiteOpenHelper {
     private static final int VERSION_DB = 1;
 
-    private static final String DB_NAME = "localDB.db";
+    private static final String DB_NAME = "localDb.db";
     private static final String DB_TABLE_NAME_USER = "user";
 
     private static final String ID = "id";
@@ -37,6 +38,7 @@ public class RecordDBManager extends SQLiteOpenHelper {
     private static final String FULL_NAME = "full_name";
     private static final String EMAIL_ID = "email_id";
     private static final String DOB = "dob";
+    private static final String APPROVED = "approved";
     private static final String NO_BOOK_ISSUED = "no_book_issued";
     private static RecordDBManager instance;
 
@@ -79,6 +81,7 @@ public class RecordDBManager extends SQLiteOpenHelper {
                 NO_BOOK_ISSUED + " TEXT, " +
                 EMAIL_ID + " TEXT, " +
                 DOB + " TEXT " +
+                // APPROVED + " TEXT " +
                 ") ;";
         db.execSQL(createQuery);
     }
@@ -89,12 +92,12 @@ public class RecordDBManager extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean authorize(UserLoginModel userLoginModel){
+    public boolean authorize(UserLoginModel userLoginModel) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String[] projection = {USER_NAME};
-        String selection = PASSWORD + " = ? "+ USER_NAME + " = ? ";
-        String[] selectionArgs = { userLoginModel.getPassword(),userLoginModel.getUserName()};
+        String[] projection = {PASSWORD};
+        String selection = USER_NAME + " = ? ";
+        String[] selectionArgs = {userLoginModel.getUserName()};
 
         Cursor cursor = db.query(
                 DB_TABLE_NAME_USER,                     // The table to query
@@ -106,31 +109,49 @@ public class RecordDBManager extends SQLiteOpenHelper {
                 null                                 // The sort order
         );
 
-        if(cursor != null && cursor.getCount() != 0)
-            return  true;
+        if(cursor.getCount() != 0){
+            cursor.moveToFirst();
+            do{
+                Log.d("Login",userLoginModel.getPassword() + "  " + cursor.getString(cursor.getColumnIndex(PASSWORD)));
+                if(userLoginModel.getPassword().compareTo(cursor.getString(cursor.getColumnIndex(PASSWORD))) == 0)
+                    return  true;
+            }while(cursor.moveToNext());
+        }
+
 
         return false;
     }
 
-    public boolean addUser(CreateUserModel createUserModel){
+
+
+    public boolean addUser(CreateUserModel createUserModel) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(USER_NAME,createUserModel.getUserName());
-        values.put(PASSWORD,createUserModel.getPassword());
-        values.put(USER_TYPE,createUserModel.getUserType());
-        values.put(COLLEGE_ID,createUserModel.getCollegeId());
-        values.put(FULL_NAME,createUserModel.getFullName());
-        values.put(EMAIL_ID,createUserModel.getEmailId());
-        values.put(DOB,createUserModel.getDob());
-        values.put(NO_BOOK_ISSUED,"0");
+        values.put(USER_NAME, createUserModel.getUserName());
+        values.put(PASSWORD, createUserModel.getPassword());
+        values.put(USER_TYPE, createUserModel.getUserType());
+        values.put(COLLEGE_ID, createUserModel.getCollegeId());
+        values.put(FULL_NAME, createUserModel.getFullName());
+        values.put(EMAIL_ID, createUserModel.getEmailId());
+        values.put(DOB, createUserModel.getDob());
+        values.put(NO_BOOK_ISSUED, "0");
+        //values.put(APPROVED,"Y");
         long newRowId = db.insert(DB_TABLE_NAME_USER, null, values);
-        return  newRowId != -1;
+        Log.d("newRowId", String.valueOf(newRowId));
+        return newRowId != -1;
     }
 
-    public void showAllRecords(){
+    public List<CreateUserModel> showAllRecords(List<CreateUserModel> createUserModels) {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] projectionAllRecord = {
-                FULL_NAME
+                FULL_NAME,
+                USER_NAME,
+                PASSWORD,
+                USER_TYPE,
+                EMAIL_ID,
+                DOB,
+                NO_BOOK_ISSUED
+                //APPROVED
         };
         Cursor allRecords = db.query(DB_TABLE_NAME_USER,
                 projectionAllRecord,
@@ -142,9 +163,23 @@ public class RecordDBManager extends SQLiteOpenHelper {
         );
 
         allRecords.moveToFirst();
+        int index = 0;
 
-        do{
-                Log.i(DB_NAME,allRecords.getString(allRecords.getColumnIndex(FULL_NAME)));
-        }while (allRecords.moveToNext());
+        do {
+            CreateUserModel createUserModel = new CreateUserModel();
+            createUserModel.setFullName(allRecords.getString(allRecords.getColumnIndex(FULL_NAME)));
+            createUserModel.setUserName(allRecords.getString(allRecords.getColumnIndex(USER_NAME)));
+            createUserModel.setPassword(allRecords.getString(allRecords.getColumnIndex(PASSWORD)));
+            createUserModel.setUserType(allRecords.getString(allRecords.getColumnIndex(USER_TYPE)));
+            createUserModel.setEmailId(allRecords.getString(allRecords.getColumnIndex(EMAIL_ID)));
+            createUserModel.setDob(allRecords.getString(allRecords.getColumnIndex(DOB)));
+            createUserModel.setNoOfBookIssued(allRecords.getString(allRecords.getColumnIndex(NO_BOOK_ISSUED)));
+            //  createUserModel.setApproved(allRecords.getString(allRecords.getColumnIndex(APPROVED)));
+            Log.i("createUserModels", createUserModel.toString());
+            createUserModels.add(createUserModel);
+            index++;
+        } while (allRecords.moveToNext());
+
+        return createUserModels;
     }
 }

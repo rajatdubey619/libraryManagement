@@ -1,10 +1,12 @@
 package com.example.nipc26.librarymanagement.model;
 
+import java.io.Serializable;
+
 /**
  * Created by NI PC 26 on 10/21/2016.
  */
 
-public class CreateUserModel {
+public class CreateUserModel implements Serializable{
     private String userName;
     private String password;
     private String userType;
@@ -14,6 +16,15 @@ public class CreateUserModel {
     private String emailId;
     private String dob;
     private String noOfBookIssued;
+    private String approved;
+
+    public String getApproved() {
+        return approved;
+    }
+
+    public void setApproved(String approved) {
+        this.approved = approved;
+    }
 
     public String getPassword() {
         return password;
@@ -99,6 +110,7 @@ public class CreateUserModel {
                 ", emailId='" + emailId + '\'' +
                 ", dob='" + dob + '\'' +
                 ", noOfBookIssued='" + noOfBookIssued + '\'' +
+                ", approved='" + approved + '\'' +
                 '}';
     }
 }

@@ -1,7 +1,9 @@
 package com.example.nipc26.librarymanagement.activities;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,7 +43,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     private DatePickerDialog dpd;
     private Calendar calendar;
     private int year, month, day;
-    private Spinner spinner ;
+    private Spinner spinner;
     private String userType;
 
     @Override
@@ -61,15 +63,15 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                 finish();
             }
         });
-        
-        etFullName = (EditText)findViewById(R.id.etFullName);
-        etUserId = (EditText)findViewById(R.id.etLoginUsername);
-        etUniversityId = (EditText)findViewById(R.id.etUnivId);
-        etEmailId = (EditText)findViewById(R.id.etEmailId);
+
+        etFullName = (EditText) findViewById(R.id.etFullName);
+        etUserId = (EditText) findViewById(R.id.etLoginUsername);
+        etUniversityId = (EditText) findViewById(R.id.etUnivId);
+        etEmailId = (EditText) findViewById(R.id.etEmailId);
         tvBatchYear = (TextView) findViewById(R.id.tvBatchYear);
-        tvDOBYear = (TextView)findViewById(R.id.tvDOBYear);
-        etPassword = (EditText)findViewById(R.id.etLoginPassword);
-        spinner  =(Spinner) findViewById(R.id.spinner);
+        tvDOBYear = (TextView) findViewById(R.id.tvDOBYear);
+        etPassword = (EditText) findViewById(R.id.etLoginPassword);
+        spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.user_type_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -86,6 +88,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
     }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
@@ -93,13 +96,14 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
         // Showing selected spinner item
     }
+
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btnCreateAccount:
                 CreateUserModel createUserModel = new CreateUserModel();
                 createUserModel.setFullName(etFullName.getText().toString());
@@ -111,8 +115,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                 createUserModel.setPassword(etPassword.getText().toString());
                 createUserModel.setUserType(userType);
                 createUserModel.setNoOfBookIssued("0");
-                Log.d("account Created",RecordDBManager.getHelper(this).addUser(createUserModel)?"Y":"N");
-                RecordDBManager.getHelper(this).showAllRecords();
+                Log.d("account Created", RecordDBManager.getHelper(this).addUser(createUserModel) ? "Y" : "N");
                 break;
             case R.id.tvBatchYear:
                 dateListner = new DatePickerDialog.OnDateSetListener() {
@@ -123,6 +126,17 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
 
                 };
+                dpd = new DatePickerDialog(this, dateListner, year, month, day);
+                dpd.setButton(DialogInterface.BUTTON_POSITIVE, "Set", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        DatePicker datePicker = dpd.getDatePicker();
+
+                        // The following clear focus did the trick of saving the date while the date is put manually by the edit text.
+                        datePicker.clearFocus();
+                        dateListner.onDateSet(datePicker, datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+                    }
+                });
+                dpd.show();
                 break;
             case R.id.tvDOBYear:
                 dateListner = new DatePickerDialog.OnDateSetListener() {
@@ -133,18 +147,19 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
 
                 };
+                dpd = new DatePickerDialog(this, dateListner, year, month, day);
+                dpd.setButton(DialogInterface.BUTTON_POSITIVE, "Set", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        DatePicker datePicker = dpd.getDatePicker();
+
+                        // The following clear focus did the trick of saving the date while the date is put manually by the edit text.
+                        datePicker.clearFocus();
+                        dateListner.onDateSet(datePicker, datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+                    }
+                });
+                dpd.show();
                 break;
         }
-        dpd = new DatePickerDialog(this, dateListner, year, month, day);
-        dpd.setButton(DialogInterface.BUTTON_POSITIVE, "Set", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface arg0, int arg1) {
-                DatePicker datePicker = dpd.getDatePicker();
 
-                // The following clear focus did the trick of saving the date while the date is put manually by the edit text.
-                datePicker.clearFocus();
-                dateListner.onDateSet(datePicker, datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
-            }
-        });
-        dpd.show();
     }
 }

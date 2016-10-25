@@ -41,6 +41,7 @@ public class SplashScreen extends AppCompatActivity implements Animation.Animati
         thread.start();
     }
 
+
     @Override
     public void onAnimationStart(Animation animation) {
 
@@ -48,9 +49,10 @@ public class SplashScreen extends AppCompatActivity implements Animation.Animati
 
     @Override
     public void onAnimationEnd(Animation animation) {
-        finish();
+
         Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
@@ -59,9 +61,8 @@ public class SplashScreen extends AppCompatActivity implements Animation.Animati
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-//        thread.stop();
-
+    protected void onStop() {
+        super.onStop();
+        thread.stop();
     }
 }

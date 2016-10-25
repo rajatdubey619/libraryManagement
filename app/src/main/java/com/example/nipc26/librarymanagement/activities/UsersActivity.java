@@ -57,7 +57,8 @@ public class UsersActivity extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(this, R.string.under_dev,Toast.LENGTH_SHORT).show();
                 break;
             case R.id.rlAllUser:
-                Toast.makeText(this, R.string.under_dev,Toast.LENGTH_SHORT).show();
+                Intent intentShowAllUser = new Intent(this,ShowAllUserActivity.class);
+                startActivity(intentShowAllUser);
                 break;
             case R.id.rlApproveUser:
                 Toast.makeText(this, R.string.under_dev,Toast.LENGTH_SHORT).show();

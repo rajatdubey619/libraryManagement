@@ -8,6 +8,15 @@ public class UserLoginModel {
     private String userName;
     private String password;
     private String userType;
+    private String approved;
+
+    public String getApproved() {
+        return approved;
+    }
+
+    public void setApproved(String approved) {
+        this.approved = approved;
+    }
 
     public String getUserName() {
         return userName;
@@ -40,6 +49,7 @@ public class UserLoginModel {
                 "userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", userType='" + userType + '\'' +
+                ", approved='" + approved + '\'' +
                 '}';
     }
 }
