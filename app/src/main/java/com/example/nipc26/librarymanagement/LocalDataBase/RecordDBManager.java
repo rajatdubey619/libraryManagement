@@ -228,7 +228,7 @@ public class RecordDBManager extends SQLiteOpenHelper {
         values.put(PRICE, bookModel.getPrice());
         values.put(COPIES, bookModel.getCopied());
         values.put(EDITION,bookModel.getEdition());
-        long newRowId = db.insert(DB_TABLE_NAME_USER, null, values);
+        long newRowId = db.insert(DB_TABLE_NAME_BOOK, null, values);
         Log.d("newRowBookId", String.valueOf(newRowId));
         return newRowId != -1;
     }
@@ -243,7 +243,8 @@ public class RecordDBManager extends SQLiteOpenHelper {
                 COPIES,
                 EDITION
         };
-        Cursor allRecords = db.query(DB_TABLE_NAME_USER,
+        Cursor allRecords = db.query(DB_TABLE_NAME_BOOK
+                ,
                 projectionAllRecord,
                 null,
                 null,

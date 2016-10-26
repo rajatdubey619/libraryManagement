@@ -50,7 +50,8 @@ public class BookActivity extends AppCompatActivity implements View.OnClickListe
         public void onClick(View v) {
             switch(v.getId()){
                 case R.id.rlShowAllBooks:
-                    Toast.makeText(this, R.string.under_dev,Toast.LENGTH_SHORT).show();
+                    Intent intentShowAllBooks =  new Intent(this,ShowAllBookActivity.class);
+                    startActivity(intentShowAllBooks);
                     break;
                 case R.id.rlBranchBooks:
                     Toast.makeText(this, R.string.under_dev,Toast.LENGTH_SHORT).show();
