@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_book_details_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.nipc26.librarymanagement.activities.BookDetailsMainActivity">
+    <include
+        android:id="@+id/toolbarHeader"
+        layout="@layout/toolbar_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbarHeader"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivLogo"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="48dp"
+                android:padding="5dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tvBookName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Book Name"
+                    android:drawableLeft="@drawable/book_one"
+                    android:drawablePadding="10dp"
+                    android:paddingLeft="70dp"
+                    android:background="@color/lighter_gray"
+                    android:textSize="20dp"/>
+                <TextView
+                    android:id="@+id/tvBookBarcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Book Barcode"
+                    android:inputType="phone"
+                    android:drawableLeft="@drawable/id_card_three"
+                    android:drawablePadding="10dp"
+                    android:paddingLeft="70dp"
+                    android:background="@color/lighter_gray"
+                    android:textSize="20dp"/>
+
+                <TextView
+                    android:id="@+id/tvBookType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="BookType"
+                    android:inputType="textEmailAddress"
+                    android:drawableLeft="@drawable/drawer"
+                    android:drawablePadding="10dp"
+                    android:paddingLeft="70dp"
+                    android:background="@color/lighter_gray"
+                    android:textSize="20dp"
+                    />
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Price of one copie"
+                    android:inputType="number"
+                    android:drawableLeft="@drawable/coin_dollar"
+                    android:drawablePadding="10dp"
+                    android:paddingLeft="70dp"
+                    android:background="@color/lighter_gray"
+                    android:textSize="20dp"/>
+
+                <TextView
+                    android:id="@+id/tvCopies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Copied"
+                    android:drawableLeft="@drawable/books_two"
+                    android:drawablePadding="10dp"
+                    android:inputType="number"
+                    android:paddingLeft="70dp"
+                    android:background="@color/lighter_gray"
+                    android:textSize="20dp"/>
+
+                <TextView
+                    android:id="@+id/tvEdition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Edition(MM/yyyy/dd)"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    android:drawableLeft="@drawable/calendar"
+                    android:drawablePadding="10dp"
+                    android:paddingLeft="70dp"
+                    android:background="@color/lighter_gray"/>
+
+
+                <!--<Button
+                    android:id="@+id/btnDevMode"
+                    android:layout_below="@+id/tvLoginPassword"
+                    android:layout_marginTop="8dp"
+                    style="@style/ButtonLogin"
+                    android:text="Dev Mode: On"
+                    android:textSize="12dp"/>-->
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

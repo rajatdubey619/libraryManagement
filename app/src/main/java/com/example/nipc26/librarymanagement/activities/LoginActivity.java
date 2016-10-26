@@ -32,6 +32,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_bmw_back));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -20,17 +20,17 @@ import java.util.Calendar;
 
 public class UserDetailMainActivity extends AppCompatActivity {
     private CreateUserModel createUserModel;
-    private EditText etFullName;
-    private EditText etUserId;
-    private EditText etUniversityId;
-    private EditText etEmailId;
+    private TextView tvFullName;
+    private TextView tvUserId;
+    private TextView tvUniversityId;
+    private TextView tvEmailId;
+    private TextView tvMobileNo;
     private TextView tvBatchYear;
     private TextView tvDOBYear;
-    private EditText etPassword;
-    private Button btnCreateAccount;
+    private TextView tvPassword;
+    private TextView tvNoOfBookIssued;
+
     private Toolbar toolbar;
-    private Spinner spinner;
-    private String userType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,30 +47,31 @@ public class UserDetailMainActivity extends AppCompatActivity {
             }
         });
 
-        etFullName = (EditText) findViewById(R.id.etFullName);
-        etUserId = (EditText) findViewById(R.id.etLoginUsername);
-        etUniversityId = (EditText) findViewById(R.id.etUnivId);
-        etEmailId = (EditText) findViewById(R.id.etEmailId);
+        tvFullName = (TextView) findViewById(R.id.etFullName);
+        tvUserId = (TextView) findViewById(R.id.etLoginUsername);
+        tvUniversityId = (TextView) findViewById(R.id.etUnivId);
+        tvEmailId = (TextView) findViewById(R.id.etEmailId);
         tvBatchYear = (TextView) findViewById(R.id.tvBatchYear);
+        tvMobileNo = (TextView) findViewById(R.id.etMobileNo);
         tvDOBYear = (TextView) findViewById(R.id.tvDOBYear);
-        etPassword = (EditText) findViewById(R.id.etLoginPassword);
-        spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.user_type_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        tvPassword = (TextView) findViewById(R.id.etLoginPassword);
+        tvNoOfBookIssued = (TextView) findViewById(R.id.tvNoOfBookIssued);
+
         if (getIntent().getExtras() != null) {
             if (getIntent().getExtras().get("createUserModel") != null) {
                 createUserModel = (CreateUserModel) getIntent().getExtras().get("createUserModel");
             }
         }
-        etFullName.setText(createUserModel.getFullName());
-        etUserId.setText(createUserModel.getUserName());
-        etEmailId.setText(createUserModel.getEmailId());
+        tvFullName.setText(createUserModel.getFullName());
+        tvMobileNo.setText(createUserModel.getMobileNo());
+        tvUserId.setText(createUserModel.getUserName());
+        tvEmailId.setText(createUserModel.getEmailId());
         tvDOBYear.setText(createUserModel.getDob());
         tvBatchYear.setText(createUserModel.getYear());
-        etUniversityId.setText(createUserModel.getCollegeId());
-        etPassword.setText(createUserModel.getPassword());
+        tvUniversityId.setText(createUserModel.getCollegeId());
+        tvPassword.setText(createUserModel.getPassword());
+        tvNoOfBookIssued.setText(createUserModel.getNoOfBookIssued());
+
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 

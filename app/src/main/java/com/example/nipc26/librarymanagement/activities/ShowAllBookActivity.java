@@ -8,24 +8,26 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.example.nipc26.librarymanagement.Adapters.ShowAllBookAdapter;
 import com.example.nipc26.librarymanagement.Adapters.ShowAllUserAdapter;
 import com.example.nipc26.librarymanagement.LocalDataBase.RecordDBManager;
 import com.example.nipc26.librarymanagement.R;
+import com.example.nipc26.librarymanagement.model.BookModel;
 import com.example.nipc26.librarymanagement.model.CreateUserModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowAllUserActivity extends AppCompatActivity {
+public class ShowAllBookActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private RecyclerView recyclerView;
-    private ShowAllUserAdapter showAllUserAdapter;
-    private List<CreateUserModel> createUserModelList;
+    private ShowAllBookAdapter showAllBookAdapter;
+    private List<BookModel> bookModelList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_all_user);
+        setContentView(R.layout.activity_show_all_book);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -39,13 +41,13 @@ public class ShowAllUserActivity extends AppCompatActivity {
                 finish();
             }
         });
-        createUserModelList = new ArrayList<CreateUserModel>();
-        RecordDBManager.getHelper(this).showAllRecords(createUserModelList);
+        bookModelList = new ArrayList<BookModel>();
+        RecordDBManager.getHelper(this).showAllBook(bookModelList);
         recyclerView = (RecyclerView) findViewById(R.id.rvShowAllUser);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        showAllUserAdapter = new ShowAllUserAdapter(ShowAllUserActivity.this,createUserModelList);
-        recyclerView.setAdapter(showAllUserAdapter);
+        showAllBookAdapter = new ShowAllBookAdapter(ShowAllBookActivity.this,bookModelList);
+        recyclerView.setAdapter(showAllBookAdapter);
     }
 }

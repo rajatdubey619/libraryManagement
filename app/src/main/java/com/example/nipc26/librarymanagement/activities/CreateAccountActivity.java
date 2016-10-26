@@ -34,6 +34,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     private EditText etUserId;
     private EditText etUniversityId;
     private EditText etEmailId;
+    private EditText etMobileNo;
     private TextView tvBatchYear;
     private TextView tvDOBYear;
     private EditText etPassword;
@@ -68,6 +69,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         etUserId = (EditText) findViewById(R.id.etLoginUsername);
         etUniversityId = (EditText) findViewById(R.id.etUnivId);
         etEmailId = (EditText) findViewById(R.id.etEmailId);
+        etMobileNo = (EditText)findViewById(R.id.etMobileNo);
         tvBatchYear = (TextView) findViewById(R.id.tvBatchYear);
         tvDOBYear = (TextView) findViewById(R.id.tvDOBYear);
         etPassword = (EditText) findViewById(R.id.etLoginPassword);
@@ -93,6 +95,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
         userType = parent.getItemAtPosition(position).toString();
+        userType = "User";
 
         // Showing selected spinner item
     }
@@ -108,14 +111,18 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                 CreateUserModel createUserModel = new CreateUserModel();
                 createUserModel.setFullName(etFullName.getText().toString());
                 createUserModel.setUserName(etUserId.getText().toString());
-                createUserModel.setCollegeId(etUserId.getText().toString());
+                createUserModel.setCollegeId(etUniversityId.getText().toString());
                 createUserModel.setEmailId(etEmailId.getText().toString());
                 createUserModel.setDob(tvDOBYear.getText().toString());
                 createUserModel.setYear(tvBatchYear.getText().toString());
                 createUserModel.setPassword(etPassword.getText().toString());
-                createUserModel.setUserType(userType);
+                createUserModel.setMobileNo(etMobileNo.getText().toString());
+                createUserModel.setUserType("Admin");
                 createUserModel.setNoOfBookIssued("0");
+                Log.d("createUserModel", createUserModel.toString());
                 Log.d("account Created", RecordDBManager.getHelper(this).addUser(createUserModel) ? "Y" : "N");
+
+                finish();
                 break;
             case R.id.tvBatchYear:
                 dateListner = new DatePickerDialog.OnDateSetListener() {

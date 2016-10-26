@@ -28,7 +28,12 @@
         <activity android:name=".activities.CreateAccountActivity" />
         <activity android:name=".activities.UsersActivity" />
         <activity android:name=".activities.ShowAllUserActivity" />
-        <activity android:name=".activities.UserDetailMainActivity"></activity>
+        <activity android:name=".activities.UserDetailMainActivity" />
+        <activity android:name=".activities.BookActivity" />
+        <activity android:name=".activities.ShowEbookActivity" />
+        <activity android:name=".activities.AddBookActivity" />
+        <activity android:name=".activities.ShowAllBookActivity" />
+        <activity android:name=".activities.BookDetailsMainActivity"></activity>
     </application>
 
 </manifest>

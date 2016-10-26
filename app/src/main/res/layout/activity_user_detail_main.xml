@@ -34,63 +34,59 @@
                 android:orientation="vertical"
                 android:padding="5dp">
 
-                <EditText
+                <TextView
                     android:id="@+id/etFullName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/lighter_gray"
                     android:drawableLeft="@drawable/user"
                     android:drawablePadding="10dp"
-                    android:hint="Full Name"
-                    android:inputType="textPersonName"
+                    android:text="Full Name"
+                    android:paddingLeft="70dp"
+                    android:textSize="20dp"/>
 
-                    android:paddingLeft="70dp" />
-
-                <EditText
+                <TextView
                     android:id="@+id/etMobileNo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/lighter_gray"
                     android:drawableLeft="@drawable/phone"
                     android:drawablePadding="10dp"
-                    android:hint="Mobile Number"
-                    android:inputType="phone"
+                    android:text="Mobile Number"
+                    android:paddingLeft="70dp"
+                    android:textSize="20dp"/>
 
-                    android:paddingLeft="70dp" />
-
-                <EditText
+                <TextView
                     android:id="@+id/etEmailId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/lighter_gray"
                     android:drawableLeft="@drawable/mail2"
                     android:drawablePadding="10dp"
-                    android:hint="Email Address"
-                    android:inputType="textEmailAddress"
+                    android:text="Email Address"
+                    android:paddingLeft="70dp"
+                    android:textSize="20dp"/>
 
-                    android:paddingLeft="70dp" />
-
-                <EditText
+                <TextView
                     android:id="@+id/etUnivId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/lighter_gray"
                     android:drawableLeft="@drawable/id_card_three"
                     android:drawablePadding="10dp"
-                    android:hint="University Id"
-                    android:inputType="textPersonName"
-
-                    android:paddingLeft="70dp" />
+                    android:text="University Id"
+                    android:paddingLeft="70dp"
+                    android:textSize="20dp"/>
 
                 <TextView
                     android:id="@+id/tvBatchYear"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="15dp"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/lighter_gray"
                     android:drawableLeft="@drawable/calendar"
                     android:drawablePadding="10dp"
                     android:paddingLeft="70dp"
@@ -104,48 +100,53 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="15dp"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/lighter_gray"
                     android:drawableLeft="@drawable/calendar"
                     android:drawablePadding="10dp"
                     android:paddingLeft="70dp"
                     android:text="@string/mm_dd_yyyy_dob"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    />
 
 
-                <EditText
+                <TextView
                     android:id="@+id/etLoginUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/lighter_gray"
                     android:drawableLeft="@drawable/user"
                     android:drawablePadding="10dp"
-                    android:hint="Username"
-
+                    android:text="Username"
+                    android:textSize="20dp"
                     android:paddingLeft="70dp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/etLoginPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/etLoginUsername"
                     android:layout_marginTop="15dp"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/lighter_gray"
                     android:drawableLeft="@drawable/keytwo"
                     android:drawablePadding="10dp"
-                    android:hint="Password"
-                    android:inputType="textPassword"
+                    android:text="Password"
+                    android:textSize="20dp"
                     android:paddingLeft="70dp" />
-
-                <Spinner
-                    android:id="@+id/spinner"
+                
+                <TextView
+                    android:id="@+id/tvNoOfBookIssued"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/etLoginPassword"
                     android:layout_marginTop="15dp"
-                    android:background="@android:color/holo_blue_dark"
-                    android:drawableLeft="@drawable/user"
+                    android:background="@color/lighter_gray"
+                    android:drawableLeft="@drawable/books_two"
                     android:drawablePadding="10dp"
-                    android:paddingLeft="90dp" />
+                    android:text="Book Issue"
+                    android:textSize="20dp"
+                    android:paddingLeft="70dp" />
+                
 
                 <!--<Button
                     android:id="@+id/btnDevMode"

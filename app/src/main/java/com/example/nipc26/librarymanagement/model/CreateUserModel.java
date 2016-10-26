@@ -11,12 +11,21 @@ public class CreateUserModel implements Serializable{
     private String password;
     private String userType;
     private String collegeId;
+    private String mobileNo;
     private String year;
     private String fullName;
     private String emailId;
     private String dob;
     private String noOfBookIssued;
     private String approved;
+
+    public String getMobileNo() {
+        return mobileNo;
+    }
+
+    public void setMobileNo(String mobileNo) {
+        this.mobileNo = mobileNo;
+    }
 
     public String getApproved() {
         return approved;
@@ -105,6 +114,7 @@ public class CreateUserModel implements Serializable{
                 ", password='" + password + '\'' +
                 ", userType='" + userType + '\'' +
                 ", collegeId='" + collegeId + '\'' +
+                ", mobileNo='" + mobileNo + '\'' +
                 ", year='" + year + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", emailId='" + emailId + '\'' +

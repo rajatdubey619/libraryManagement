@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_create_account"
+    android:id="@+id/activity_add_book"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/home_conference_bg"
-    tools:context="com.example.nipc26.librarymanagement.activities.CreateAccountActivity">
+    tools:context="com.example.nipc26.librarymanagement.activities.AddBookActivity">
     <include
         android:id="@+id/toolbarHeader"
         layout="@layout/toolbar_layout" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,122 +31,79 @@
                 android:gravity="center"
                 android:orientation="vertical">
                 <EditText
-                    android:id="@+id/etFullName"
+                    android:id="@+id/etBookName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Full Name"
+                    android:hint="Book Name"
                     android:inputType="textPersonName"
-                    android:drawableLeft="@drawable/user"
+                    android:drawableLeft="@drawable/book_one"
                     android:drawablePadding="10dp"
                     android:paddingLeft="70dp"
-                    
                     android:background="@color/lighter_gray"/>
                 <EditText
-                    android:id="@+id/etMobileNo"
+                    android:id="@+id/etBookBarcode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:hint="Mobile Number"
+                    android:hint="Book Barcode"
                     android:inputType="phone"
-                    android:drawableLeft="@drawable/phone"
-                    android:drawablePadding="10dp"
-                    android:paddingLeft="70dp"
-                    
-                    android:background="@color/lighter_gray"/>
-
-                <EditText
-                    android:id="@+id/etEmailId"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:hint="Email Address"
-                    android:inputType="textEmailAddress"
-                    android:drawableLeft="@drawable/mail2"
-                    android:drawablePadding="10dp"
-                    android:paddingLeft="70dp"
-                    
-                    android:background="@color/lighter_gray"/>
-                <EditText
-                    android:id="@+id/etUnivId"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:hint="University Id"
-                    android:inputType="textPersonName"
                     android:drawableLeft="@drawable/id_card_three"
                     android:drawablePadding="10dp"
                     android:paddingLeft="70dp"
-                    
                     android:background="@color/lighter_gray"/>
-                <TextView
-                    android:id="@+id/tvBatchYear"
+
+                <EditText
+                    android:id="@+id/etBookType"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/mm_dd_yyyy_batch_year"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:hint="BookType"
+                    android:inputType="textEmailAddress"
+                    android:drawableLeft="@drawable/drawer"
+                    android:drawablePadding="10dp"
+                    android:paddingLeft="70dp"
+                    android:background="@color/lighter_gray"/>
+                <EditText
+                    android:id="@+id/etPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:hint="Price of one copie"
+                    android:inputType="number"
+                    android:drawableLeft="@drawable/coin_dollar"
+                    android:drawablePadding="10dp"
+                    android:paddingLeft="70dp"
+                    android:background="@color/lighter_gray"/>
+
+                <EditText
+                    android:id="@+id/etCopies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:hint="Copied"
+                    android:drawableLeft="@drawable/books_two"
+                    android:drawablePadding="10dp"
+                    android:inputType="number"
+                    android:paddingLeft="70dp"
+                    android:background="@color/lighter_gray"/>
+
+                <TextView
+                    android:id="@+id/etEdition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Edition(MM/yyyy/dd)"
                     android:textSize="20dp"
-                    android:background="@color/lighter_gray"
                     android:layout_marginTop="15dp"
                     android:drawableLeft="@drawable/calendar"
                     android:drawablePadding="10dp"
                     android:paddingLeft="70dp"
-                    
-                    />
-                <TextView
-                    android:id="@+id/tvDOBYear"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/mm_dd_yyyy_dob"
-                    android:textSize="20dp"
-                    android:background="@color/lighter_gray"
-                    android:layout_marginTop="15dp"
-                    android:drawableLeft="@drawable/calendar"
-                    android:drawablePadding="10dp"
-                    android:paddingLeft="70dp"
-                    />
-
-
-
-
-                <EditText
-                    android:id="@+id/etLoginUsername"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:hint="Username"
-                    android:drawableLeft="@drawable/user"
-                    android:drawablePadding="10dp"
-                    android:paddingLeft="70dp"
-                    
-                    android:background="@color/lighter_gray"/>
-
-                <EditText
-                    android:id="@+id/etLoginPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/etLoginUsername"
-                    android:hint="Password"
-                    android:layout_marginTop="15dp"
-                    android:drawableLeft="@drawable/keytwo"
-                    android:inputType="textPassword"
-                    android:drawablePadding="10dp"
-                    android:paddingLeft="70dp"
-                    android:background="@color/lighter_gray"/>
-
-                <Spinner
-                    android:id="@+id/spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
-                    android:drawableLeft="@drawable/user"
-                    android:drawablePadding="10dp"
-                    android:paddingLeft="90dp"
                     android:background="@color/lighter_gray"/>
 
 
                 <Button
-                    android:id="@+id/btnCreateAccount"
+                    android:id="@+id/btnAddBook"
                     android:layout_marginTop="20dp"
-                    android:text="Create Account"
+                    android:text="Add Book"
                     android:textSize="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -159,7 +116,7 @@
                     android:text="Dev Mode: On"
                     android:textSize="12dp"/>-->
             </LinearLayout>
-            </RelativeLayout>
+        </RelativeLayout>
     </ScrollView>
 
 </RelativeLayout>

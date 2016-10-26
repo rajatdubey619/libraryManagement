@@ -53,7 +53,8 @@ public class HomeMenu extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.rlShowBooks:
-                Toast.makeText(this, R.string.under_dev,Toast.LENGTH_SHORT).show();
+                Intent intentShowBooks = new Intent(this,BookActivity.class);
+                startActivity(intentShowBooks);
                 break;
             case R.id.rlIssueBook:
                 Toast.makeText(this, R.string.under_dev,Toast.LENGTH_SHORT).show();

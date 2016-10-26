@@ -9,6 +9,7 @@ import android.icu.text.AlphabeticIndex;
 import android.os.Environment;
 import android.util.Log;
 
+import com.example.nipc26.librarymanagement.model.BookModel;
 import com.example.nipc26.librarymanagement.model.CreateUserModel;
 import com.example.nipc26.librarymanagement.model.UserLoginModel;
 
@@ -24,10 +25,11 @@ import java.util.List;
  */
 
 public class RecordDBManager extends SQLiteOpenHelper {
-    private static final int VERSION_DB = 1;
+    private static final int VERSION_DB = 6;
 
-    private static final String DB_NAME = "localDb.db";
-    private static final String DB_TABLE_NAME_USER = "user";
+    private static final String DB_NAME = "local.db";
+    private static final String DB_TABLE_NAME_USER = "user_info_one";
+    private static final String DB_TABLE_NAME_BOOK = "book_one";
 
     private static final String ID = "id";
     private static final String USER_NAME = "user_name";
@@ -39,7 +41,18 @@ public class RecordDBManager extends SQLiteOpenHelper {
     private static final String EMAIL_ID = "email_id";
     private static final String DOB = "dob";
     private static final String APPROVED = "approved";
+    private static final String MOBILE_NO = "mobile_no";
     private static final String NO_BOOK_ISSUED = "no_book_issued";
+
+
+    private static final String ID_BOOK = "id";
+    private static final String BOOK_NAME = "book_name";
+    private static final String BOOK_TYPE = "book_type";
+    private static final String PRICE = "price";
+    private static final String EDITION = "edition";
+    private static final String COPIES = "copied";
+    private static final String BOOK_BARCODE = "book_barcode";
+
     private static RecordDBManager instance;
 
 
@@ -50,12 +63,11 @@ public class RecordDBManager extends SQLiteOpenHelper {
     }
 
     private RecordDBManager(Context context) {
-        super(context, DB_NAME, null, VERSION_DB);
-        /*super(context, Environment.getExternalStorageDirectory()
+       /* super(context, DB_NAME, null, VERSION_DB);*/
+        super(context, Environment.getExternalStorageDirectory()
                 + File.separator + "data"
                 + File.separator + DB_NAME, null, VERSION_DB);
-        SQLiteDatabase db = this.getWritableDatabase();*/
-
+        SQLiteDatabase db = this.getWritableDatabase();
     }
 
 
@@ -70,25 +82,41 @@ public class RecordDBManager extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createQuery = "CREATE TABLE IF NOT EXISTS " + DB_TABLE_NAME_USER + " ( " +
+        String createQueryUser = "CREATE TABLE IF NOT EXISTS " + DB_TABLE_NAME_USER + " ( " +
                 ID + " INTEGER PRIMARY KEY UNIQUE , " +
                 USER_NAME + " TEXT , " +
                 USER_TYPE + " TEXT , " +
                 PASSWORD + " TEXT , " +
-                COLLEGE_ID + " TEXT , " +
-                FULL_NAME + " TEXT , " +
-                BATCH_YEAR + " TEXT, " +
-                NO_BOOK_ISSUED + " TEXT, " +
-                EMAIL_ID + " TEXT, " +
-                DOB + " TEXT " +
-                // APPROVED + " TEXT " +
+                COLLEGE_ID + " TEXT DEFAULT 'B130010001', " +
+                FULL_NAME + " TEXT DEFAULT 'abc@gmail.com' , " +
+                BATCH_YEAR + "  TEXT DEFAULT '2016' , " +
+                NO_BOOK_ISSUED + " TEXT DEFAULT  '0' , " +
+                EMAIL_ID + " TEXT DEFAULT 'abc@gmail.com'  , " +
+                DOB + " TEXT DEFAULT '01/01/1971', " +
+                APPROVED + " TEXT DEFAULT 'Y' ," +
+                MOBILE_NO + " TEXT TEXT DEFAULT '987456123'" +
                 ") ;";
-        db.execSQL(createQuery);
+        String createQueryBook = "CREATE TABLE IF NOT EXISTS " + DB_TABLE_NAME_BOOK + " ( " +
+                ID_BOOK + " INTEGER PRIMARY KEY UNIQUE , " +
+                BOOK_NAME + " TEXT DEFAULT 'Dummy Andorid', " +
+                BOOK_TYPE + " TEXT DEFAULT 'CSE', " +
+                PRICE + " TEXT DEFAULT 'Rs200', " +
+                BOOK_BARCODE + " TEXT DEFAULT 'B130010001', " +
+                EDITION + " TEXT DEFAULT '2016' , " +
+                COPIES + " TEXT TEXT DEFAULT '30'" +
+                ") ;";
+        db.execSQL(createQueryUser);
+        db.execSQL(createQueryBook);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + DB_TABLE_NAME_USER);
+        if (newVersion > oldVersion) {
+           // db.execSQL("ALTER TABLE "+ DB_TABLE_NAME_USER+" ADD COLUMN " + MOBILE_NO + " TEXT DEFAULT '987456123' ; ");
+            db.execSQL("DROP TABLE IF EXISTS " + DB_TABLE_NAME_USER);
+            db.execSQL("DROP TABLE IF EXISTS " + DB_TABLE_NAME_BOOK);
+        }
         onCreate(db);
     }
 
@@ -133,9 +161,10 @@ public class RecordDBManager extends SQLiteOpenHelper {
         values.put(COLLEGE_ID, createUserModel.getCollegeId());
         values.put(FULL_NAME, createUserModel.getFullName());
         values.put(EMAIL_ID, createUserModel.getEmailId());
+        values.put(MOBILE_NO,createUserModel.getMobileNo());
         values.put(DOB, createUserModel.getDob());
         values.put(NO_BOOK_ISSUED, "0");
-        //values.put(APPROVED,"Y");
+        values.put(APPROVED,"Y");
         long newRowId = db.insert(DB_TABLE_NAME_USER, null, values);
         Log.d("newRowId", String.valueOf(newRowId));
         return newRowId != -1;
@@ -150,8 +179,12 @@ public class RecordDBManager extends SQLiteOpenHelper {
                 USER_TYPE,
                 EMAIL_ID,
                 DOB,
-                NO_BOOK_ISSUED
-                //APPROVED
+                NO_BOOK_ISSUED,
+                APPROVED,
+                MOBILE_NO,
+                COLLEGE_ID,
+                BATCH_YEAR
+
         };
         Cursor allRecords = db.query(DB_TABLE_NAME_USER,
                 projectionAllRecord,
@@ -163,7 +196,6 @@ public class RecordDBManager extends SQLiteOpenHelper {
         );
 
         allRecords.moveToFirst();
-        int index = 0;
 
         do {
             CreateUserModel createUserModel = new CreateUserModel();
@@ -172,14 +204,68 @@ public class RecordDBManager extends SQLiteOpenHelper {
             createUserModel.setPassword(allRecords.getString(allRecords.getColumnIndex(PASSWORD)));
             createUserModel.setUserType(allRecords.getString(allRecords.getColumnIndex(USER_TYPE)));
             createUserModel.setEmailId(allRecords.getString(allRecords.getColumnIndex(EMAIL_ID)));
+            createUserModel.setMobileNo(allRecords.getString(allRecords.getColumnIndex(MOBILE_NO)));
+            createUserModel.setCollegeId(allRecords.getString(allRecords.getColumnIndex(COLLEGE_ID)));
             createUserModel.setDob(allRecords.getString(allRecords.getColumnIndex(DOB)));
+            createUserModel.setYear(allRecords.getString(allRecords.getColumnIndex(BATCH_YEAR)));
             createUserModel.setNoOfBookIssued(allRecords.getString(allRecords.getColumnIndex(NO_BOOK_ISSUED)));
-            //  createUserModel.setApproved(allRecords.getString(allRecords.getColumnIndex(APPROVED)));
-            Log.i("createUserModels", createUserModel.toString());
+            createUserModel.setApproved(allRecords.getString(allRecords.getColumnIndex(APPROVED)));
+            Log.d("createUserModel", createUserModel.toString());
             createUserModels.add(createUserModel);
-            index++;
         } while (allRecords.moveToNext());
 
         return createUserModels;
+    }
+
+
+
+    public boolean addBook(BookModel bookModel) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(BOOK_NAME, bookModel.getBookName());
+        values.put(BOOK_TYPE, bookModel.getBookType());
+        values.put(BOOK_BARCODE, bookModel.getBookBarcode());
+        values.put(PRICE, bookModel.getPrice());
+        values.put(COPIES, bookModel.getCopied());
+        values.put(EDITION,bookModel.getEdition());
+        long newRowId = db.insert(DB_TABLE_NAME_USER, null, values);
+        Log.d("newRowBookId", String.valueOf(newRowId));
+        return newRowId != -1;
+    }
+
+    public List<BookModel> showAllBook(List<BookModel> bookModels) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projectionAllRecord = {
+                BOOK_NAME,
+                BOOK_TYPE,
+                BOOK_BARCODE,
+                PRICE,
+                COPIES,
+                EDITION
+        };
+        Cursor allRecords = db.query(DB_TABLE_NAME_USER,
+                projectionAllRecord,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+        allRecords.moveToFirst();
+
+        do {
+            BookModel bookModel = new BookModel();
+            bookModel.setBookName(allRecords.getString(allRecords.getColumnIndex(BOOK_NAME)));
+            bookModel.setBookType(allRecords.getString(allRecords.getColumnIndex(BOOK_TYPE)));
+            bookModel.setBookBarcode(allRecords.getString(allRecords.getColumnIndex(BOOK_BARCODE)));
+            bookModel.setPrice(allRecords.getString(allRecords.getColumnIndex(PRICE)));
+            bookModel.setCopied(allRecords.getString(allRecords.getColumnIndex(COPIES)));
+            bookModel.setEdition(allRecords.getString(allRecords.getColumnIndex(EDITION)));
+            Log.d("bookModel", bookModel.toString());
+            bookModels.add(bookModel);
+        } while (allRecords.moveToNext());
+
+        return bookModels;
     }
 }
