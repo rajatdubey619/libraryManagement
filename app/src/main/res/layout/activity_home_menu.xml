@@ -199,7 +199,7 @@
                     android:gravity="center">
 
                     <RelativeLayout
-                        android:id="@+id/rlContactUs"
+                        android:id="@+id/rlInfo"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="2dp"
@@ -216,17 +216,17 @@
                             android:paddingLeft="2dp">
 
                             <TextView
-                                android:id="@+id/tvContactUs"
+                                android:id="@+id/tvInfo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Contact Us"
+                                android:text="Information"
                                 android:textColor="#ffffff"
                                 android:textSize="15dp" />
                         </LinearLayout>
 
 
                         <ImageView
-                            android:id="@+id/ivContactUs"
+                            android:id="@+id/ivInfo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
@@ -235,7 +235,7 @@
                             android:layout_marginTop="10dp"
                             android:adjustViewBounds="true"
                             android:scaleType="centerInside"
-                            android:src="@drawable/phone" />
+                            android:src="@drawable/info" />
                     </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>

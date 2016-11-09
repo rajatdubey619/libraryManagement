@@ -63,11 +63,11 @@ public class RecordDBManager extends SQLiteOpenHelper {
     }
 
     private RecordDBManager(Context context) {
-       /* super(context, DB_NAME, null, VERSION_DB);*/
-        super(context, Environment.getExternalStorageDirectory()
+        super(context, DB_NAME, null, VERSION_DB);
+      /*  super(context, Environment.getExternalStorageDirectory()
                 + File.separator + "data"
                 + File.separator + DB_NAME, null, VERSION_DB);
-        SQLiteDatabase db = this.getWritableDatabase();
+        //SQLiteDatabase db = this.getWritableDatabase();*/
     }
 
 

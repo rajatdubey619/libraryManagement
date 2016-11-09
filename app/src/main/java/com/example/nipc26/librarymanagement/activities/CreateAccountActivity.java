@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,10 +20,13 @@ import android.widget.EditText;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nipc26.librarymanagement.LocalDataBase.RecordDBManager;
 import com.example.nipc26.librarymanagement.R;
 import com.example.nipc26.librarymanagement.model.CreateUserModel;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.ParseException;
 import java.util.Calendar;
@@ -30,6 +34,7 @@ import java.util.Calendar;
 import static com.example.nipc26.librarymanagement.R.drawable.calendar;
 
 public class CreateAccountActivity extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener {
+    private final String TAG = "CreateAccountActivity" ;
     private EditText etFullName;
     private EditText etUserId;
     private EditText etUniversityId;
@@ -46,11 +51,15 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     private int year, month, day;
     private Spinner spinner;
     private String userType;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -121,7 +130,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                 createUserModel.setNoOfBookIssued("0");
                 Log.d("createUserModel", createUserModel.toString());
                 Log.d("account Created", RecordDBManager.getHelper(this).addUser(createUserModel) ? "Y" : "N");
-
+                databaseReference.push().setValue(createUserModel);
                 finish();
                 break;
             case R.id.tvBatchYear:

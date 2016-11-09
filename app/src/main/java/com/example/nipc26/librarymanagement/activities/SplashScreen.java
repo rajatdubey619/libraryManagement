@@ -60,9 +60,4 @@ public class SplashScreen extends AppCompatActivity implements Animation.Animati
 
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        thread.stop();
-    }
 }

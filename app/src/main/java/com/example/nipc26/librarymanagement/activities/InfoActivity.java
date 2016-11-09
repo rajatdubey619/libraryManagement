@@ -11,15 +11,15 @@ import android.webkit.WebViewClient;
 
 import com.example.nipc26.librarymanagement.R;
 
-public class ShowEbookActivity extends AppCompatActivity {
+public class InfoActivity extends AppCompatActivity {
     private Toolbar toolbar;
-    private WebView wv1;
+    private WebView webView;
     private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_ebook);
+        setContentView(R.layout.activity_info);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -33,29 +33,31 @@ public class ShowEbookActivity extends AppCompatActivity {
                 finish();
             }
         });
-
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
-        wv1=(WebView)findViewById(R.id.webview);
-        wv1.setWebViewClient(new WebViewClient(){
+        webView = (WebView) findViewById(R.id.webview);
+        webView.setWebViewClient(new WebViewClient() {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
             }
+
             @Override
             public void onPageFinished(WebView view, final String url) {
                 progressDialog.dismiss();
             }
         });
-        wv1.getSettings().setLoadsImagesAutomatically(true);
-        wv1.getSettings().setJavaScriptEnabled(true);
-        wv1.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-        wv1.loadUrl("https://www.goodreads.com/");
+        webView.getSettings().setLoadsImagesAutomatically(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        webView.loadUrl("http://library.chitkara.edu.in/");
     }
+
 }
+

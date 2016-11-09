@@ -16,7 +16,7 @@ public class HomeMenu extends AppCompatActivity implements View.OnClickListener{
     private RelativeLayout rlShowBooks;
     private RelativeLayout rlIssuesBook;
     private RelativeLayout rlUsers;
-    private RelativeLayout rlContactUs;
+    private RelativeLayout rlInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +40,11 @@ public class HomeMenu extends AppCompatActivity implements View.OnClickListener{
         rlShowBooks = (RelativeLayout)findViewById(R.id.rlShowBooks);
         rlIssuesBook = (RelativeLayout)findViewById(R.id.rlIssueBook);
         rlUsers = (RelativeLayout)findViewById(R.id.rlUsers);
-        rlContactUs = (RelativeLayout)findViewById(R.id.rlContactUs);
+        rlInfo = (RelativeLayout)findViewById(R.id.rlInfo);
 
         rlShowBooks.setOnClickListener(this);
         rlIssuesBook.setOnClickListener(this);
-        rlContactUs.setOnClickListener(this);
+        rlInfo.setOnClickListener(this);
         rlUsers.setOnClickListener(this);
 
     }
@@ -63,8 +63,9 @@ public class HomeMenu extends AppCompatActivity implements View.OnClickListener{
                 Intent intentUsers = new Intent(this,UsersActivity.class);
                 startActivity(intentUsers);
                 break;
-            case R.id.rlContactUs:
-                Toast.makeText(this, R.string.under_dev,Toast.LENGTH_SHORT).show();
+            case R.id.rlInfo:
+                Intent intentInfo =  new Intent(this,InfoActivity.class);
+                startActivity(intentInfo);
                 break;
         }
     }

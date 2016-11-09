@@ -1,10 +1,12 @@
 package com.example.nipc26.librarymanagement.activities;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -15,15 +17,14 @@ import com.example.nipc26.librarymanagement.LocalDataBase.RecordDBManager;
 import com.example.nipc26.librarymanagement.R;
 import com.example.nipc26.librarymanagement.activities.HomeMenu;
 import com.example.nipc26.librarymanagement.model.UserLoginModel;
-
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+    private final String TAG = "LoginActivity" ;
     private Toolbar toolbar;
     private Button btnLogin;
     private Button btnCreateAccount;
     private EditText etLoginUsername;
     private EditText etLoginPassword;
     private UserLoginModel userLoginModel;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
+
+
         userLoginModel =  new UserLoginModel();
         etLoginPassword = (EditText) findViewById(R.id.etLoginPassword);
         etLoginUsername = (EditText) findViewById(R.id.etLoginUsername);
@@ -52,6 +55,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnCreateAccount.setOnClickListener(this);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
     @Override
@@ -71,7 +84,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }else {
                     Toast.makeText(this,"User or password empty!!!",Toast.LENGTH_SHORT).show();
                 }
-
                 break;
             case R.id.btnCreateAccount:
                 Intent intentCreateAccount = new Intent(getBaseContext(),CreateAccountActivity.class);
